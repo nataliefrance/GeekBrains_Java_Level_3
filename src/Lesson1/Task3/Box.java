@@ -20,7 +20,7 @@ public class Box<T extends Fruit> {
     // true – если она равны по весу,
     // false – в противном случае
     // коробки с яблоками мы можем сравнивать с коробками с апельсинами);
-    boolean compare(Box<?> box) {
+    boolean compare(Box<? super T> box) {
         return this.getWeight() == box.getWeight();
     }
 
