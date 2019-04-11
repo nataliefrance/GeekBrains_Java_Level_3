@@ -1,12 +1,15 @@
 package Lesson5;
 
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainClass {
     private static final int CARS_COUNT = 4;
     //Создаем CountDownLatch на CARS_COUNT машин
     static final CountDownLatch START = new CountDownLatch(CARS_COUNT + 1);
-    static final Semaphore sem = new Semaphore(CARS_COUNT / 2);
+    static final Semaphore SEMAPHORE = new Semaphore(CARS_COUNT / 2);
+    static final AtomicInteger NOTFINISH = new AtomicInteger(CARS_COUNT);
+
 
     public static void main(String[] args) throws InterruptedException {
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
@@ -24,6 +27,9 @@ public class MainClass {
         START.countDown(); //Команда дана, уменьшаем счетчик на 1
         //счетчик становится равным нулю, и все ожидающие потоки одновременно разблокируются
 
+        while (NOTFINISH.get() != 0) {
+            Thread.sleep(100);
+        }
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
     }
 }
