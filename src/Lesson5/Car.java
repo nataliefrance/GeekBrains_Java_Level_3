@@ -2,6 +2,8 @@ package Lesson5;
 
 public class Car implements Runnable {
     private static int CARS_COUNT;
+    private boolean isWinner;
+
     static {
         CARS_COUNT = 0;
     }
@@ -42,6 +44,10 @@ public class Car implements Runnable {
         }
         for (int i = 0; i < race.getStages().size(); i++) {
             race.getStages().get(i).go(this);
+        }
+        if (MainClass.NOTFINISH.get() == 4){
+            isWinner = true;
+            System.out.println(name + " WIN!!!");
         }
         MainClass.NOTFINISH.decrementAndGet();
     }
