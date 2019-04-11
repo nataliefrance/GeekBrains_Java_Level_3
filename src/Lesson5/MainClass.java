@@ -5,7 +5,8 @@ import java.util.concurrent.*;
 public class MainClass {
     private static final int CARS_COUNT = 4;
     //Создаем CountDownLatch на CARS_COUNT машин
-    public static final CountDownLatch START = new CountDownLatch(CARS_COUNT + 1);
+    static final CountDownLatch START = new CountDownLatch(CARS_COUNT + 1);
+    static final Semaphore sem = new Semaphore(CARS_COUNT / 2);
 
     public static void main(String[] args) throws InterruptedException {
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
