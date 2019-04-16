@@ -18,8 +18,8 @@ public class MainClass {
         for (int i = 0; i < cars.length; i++) {
             cars[i] = new Car(race, 20 + (int) (Math.random() * 10));
         }
-        for (int i = 0; i < cars.length; i++) {
-            new Thread(cars[i]).start();
+        for (Car car : cars) {
+            new Thread(car).start();
         }
         while (START.getCount() > 1) //Проверяем, собрались ли все автомобили
             Thread.sleep(100);
